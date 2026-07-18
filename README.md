@@ -1,47 +1,42 @@
 # 🚀 Инструкция по запуску проекта
 
+Проект инициализирован как полноценный **uv**-проект (использует `pyproject.toml` и `uv.lock`).
+
 ## 0. Если у вас нет uv
 
-Вы можете быстро установить его через обычный `pip`:
+Самый быстрый способ запустить проект — поставить `uv` через обычный `pip`:
 ```bash
 pip install uv
 ```
-
-Либо запустите проект стандартными средствами Python (без `uv`):
+*Если использовать uv категорически нельзя, проект можно поставить стандартным pip (он считает зависимости из pyproject.toml):*
 ```bash
 python -m venv .venv
-source .venv/bin/activate      # Linux / macOS
-.venv\Scripts\activate.bat     # Windows (CMD)
-pip install -r requirements.txt
-python -m jupyter notebook
+source .venv/bin/activate  # Для Windows: .venv\Scripts\activate
+pip install .
 ```
 
 ---
 
-## 1. Установка окружения и зависимостей (через uv)
+## 1. Установка окружения и зависимостей (Natively via uv)
+
+Менеджер `uv` автоматически создаст виртуальное окружение и установит все зафиксированные зависимости одной командой. Выполните в корне проекта:
 
 ```bash
-# 1. Создать виртуальное окружение
-uv venv
-
-# 2. Активировать окружение (выберите команду под вашу ОС):
-source .venv/bin/activate      # Linux / macOS
-.venv\Scripts\activate.bat     # Windows (CMD)
-.venv\Scripts\Activate.ps1     # Windows (PowerShell)
-
-# 3. Установить зависимости
-uv pip install -r requirements.txt
+# Синхронизировать окружение с uv.lock
+uv sync
 ```
 
 ## 2. Запуск исследования (Jupyter)
 
+Для запуска Jupyter Notebook нет необходимости вручную активировать виртуальное окружение — достаточно использовать команду `uv run`:
+
 ```bash
-uv pip install jupyter
+# Запуск jupyter в контексте созданного окружения
 uv run jupyter notebook
 ```
 
 **Работа в IDE (VS Code / PyCharm):**
-Откройте ноутбук и выберите созданное ядро (Kernel) по пути:
+Откройте ноутбук решения и выберите созданный интерпретатор (Kernel) по пути:
 * `../.venv/bin/python` (Linux/macOS)
 * `..\.venv\Scripts\python.exe` (Windows)
 
@@ -51,4 +46,5 @@ uv run jupyter notebook
 * `train.csv` и `test.csv` — статические таблицы.
 * `events.csv` — сырые логи пользовательской активности.
 
-Итоговый файл `submission.csv` генерируется автоматически в конце выполнения ноутбука.
+Итоговый файл `submission.csv` сгенерируется автоматически в конце выполнения ноутбука.
+
