@@ -46,7 +46,7 @@ uv run jupyter notebook
 * `..\.venv\Scripts\python.exe` (Windows)
 
 ## 3. Структура данных
-
+Скачать данные https://disk.yandex.ru/d/Bkr7LdcAJdLvUA
 Для работы пайплайна в корне проекта должны лежать файлы:
 * `train.csv` и `test.csv` — статические таблицы.
 * `events.csv` — сырые логи пользовательской активности.
